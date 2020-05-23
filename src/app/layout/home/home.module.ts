@@ -5,13 +5,15 @@ import { HomeRoutingModule } from './home-routing.module';
 import { MaterialModule } from 'src/app/material.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   exports: [HomeRoutingModule]
 })
