@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -6,28 +8,50 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
-  navRoutes = [
-    {
-      name: 'Login',
-      link: 'login'
-    },
-    {
-      name: 'Register',
-      link: 'register'
-    },
-    {
-      name: 'Customers',
-      link: 'customers'
-    },
-    {
-      name: 'Vehicles',
-      link: 'vehicles'
-    }
-  ];
-  constructor() { }
-
-  ngOnInit() {
+  isLoggedIn$: boolean;
+  navRoutes = [];
+  constructor(private authService: AuthService) {
+    this.updateMenu();
   }
 
+  ngOnInit() {
+
+    this.updateMenu();
+  }
+
+  onLogout() {
+    this.authService.updateUserLoginStatus(false);
+  }
+
+  updateMenu() {
+    this.authService.isLoggedIn.subscribe(val => {
+      this.isLoggedIn$ = val;
+      this.navRoutes = [{
+        name: 'Login',
+        link: 'login',
+        showMenu: !this.isLoggedIn$
+      },
+      {
+        name: 'Register',
+        link: 'register',
+        showMenu: !this.isLoggedIn$
+      },
+      {
+        name: 'Logout',
+        link: 'logout',
+        showMenu: this.isLoggedIn$
+      },
+      {
+        name: 'Customers',
+        link: 'customers',
+        showMenu: this.isLoggedIn$
+      },
+      {
+        name: 'Vehicles',
+        link: 'vehicles',
+        showMenu: this.isLoggedIn$
+      }];
+    });
+  }
 
 }

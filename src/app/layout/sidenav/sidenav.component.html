@@ -2,7 +2,15 @@
     <mat-sidenav mode="side" opened="false" #snav>
         <mat-nav-list>
             <!-- [routerLinkActiveOptions]="{exact:true}" -->
-            <a mat-list-item routerLink="{{menu.link}}"  routerLinkActive="active-link"  *ngFor="let menu of navRoutes"> {{ menu.name }} </a>
+            <div *ngFor="let menu of navRoutes">
+                <!-- {{menu | json}} -->
+                <ng-container *ngIf="menu.showMenu">
+                    <a mat-list-item routerLink="{{menu.link}}" *ngIf="menu.showMenu" routerLinkActive="active-link">
+                        {{ menu.name }} </a>
+                </ng-container>
+                <!-- <button *ngIf="!menu.showMenu && menu.name === 'logout'" mat-button
+                    (click)="onLogout()">{{menu.name}}</button> -->
+            </div>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -11,3 +19,6 @@
         <app-footer></app-footer>
     </mat-sidenav-content>
 </mat-sidenav-container>
+<ng-container menuItems *ngIf="navRoutes.length">
+
+</ng-container>
