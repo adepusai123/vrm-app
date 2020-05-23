@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
-  title: string = 'VRM App';
   navRoutes = [
     {
       name: 'Login',
@@ -22,8 +21,5 @@ export class SidenavComponent implements OnInit {
   ngOnInit() {
   }
 
-  showSideNav(snav) {
-    snav.toggle();
-  }
 
 }
