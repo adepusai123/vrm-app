@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: './layout/home/home.module#HomeModule'
+  },
+  {
+    path: 'customers',
+    loadChildren: './business/customers/customers.module#CustomersModule'
   }
 ];
 

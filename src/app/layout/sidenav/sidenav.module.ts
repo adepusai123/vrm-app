@@ -5,13 +5,15 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { CustomersModule } from '../../business/customers/customers.module';
 
 @NgModule({
   declarations: [SidenavComponent, HeaderComponent, FooterComponent],
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
+    CustomersModule
   ],
   exports: [SidenavComponent]
 })
