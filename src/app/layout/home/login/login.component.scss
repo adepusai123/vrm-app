@@ -3,19 +3,23 @@ form {
     width: 30%;
     height: 50%;
 
-    mat-form-field {
-        width: 95%;
-        padding: 10px;
-    }
-    
-    mat-card-actions {
-        overflow: auto;
-        
-        button {
-            width: 100% !important;
+    mat-card {
+        border-radius: 8px;
+
+        mat-form-field {
+            width: 95%;
+            padding: 10px;
         }
-    }
-    mat-card-footer {
-        padding-right: 3%;
+
+        mat-card-actions {
+            overflow: auto;
+
+            button {
+                width: 100% !important;
+            }
+        }
+        mat-card-footer {
+            padding-right: 3%;
+        }
     }
 }
