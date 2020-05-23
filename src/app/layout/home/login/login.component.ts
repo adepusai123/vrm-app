@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,9 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   hide = true;
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -27,7 +31,12 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const { value, valid } = this.loginForm;
     if (valid) {
-      console.log('Login Form Data :: ', value);
+      this.authService.loginUser(value).subscribe((res) => {
+        if (res) {
+          this.authService.updateUserLoginStatus(true);
+          this.router.navigate(['/customers']);
+        }
+      }, (err) => console.log);
     }
   }
 
