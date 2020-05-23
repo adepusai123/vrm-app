@@ -29,28 +29,32 @@ export class SidenavComponent implements OnInit {
       this.navRoutes = [{
         name: 'Login',
         link: 'login',
-        showMenu: !this.isLoggedIn$
+        showMenu: !this.isLoggedIn$,
+        index: 1
       },
       {
         name: 'Register',
         link: 'register',
-        showMenu: !this.isLoggedIn$
+        showMenu: !this.isLoggedIn$,
       },
       {
         name: 'Logout',
         link: 'logout',
-        showMenu: this.isLoggedIn$
+        showMenu: this.isLoggedIn$,
+        index: 100
       },
       {
         name: 'Customers',
         link: 'customers',
-        showMenu: this.isLoggedIn$
+        showMenu: this.isLoggedIn$,
+        index: 3
       },
       {
         name: 'Vehicles',
         link: 'vehicles',
-        showMenu: this.isLoggedIn$
-      }];
+        showMenu: this.isLoggedIn$,
+        index: 4
+      }].sort((a, b) => a.index - b.index)
     });
   }
 

@@ -6,9 +6,10 @@ import { MaterialModule } from 'src/app/material.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, LogoutComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

@@ -11,7 +11,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   get isLoggedIn() {
-  return this.loggedIn.asObservable();
+    return this.loggedIn.asObservable();
   }
 
   loginUser(body: any) {
@@ -20,5 +20,8 @@ export class AuthService {
 
   updateUserLoginStatus(val) {
     this.loggedIn.next(val);
+  }
+  logOut() {
+    this.loggedIn.next(false);
   }
 }
