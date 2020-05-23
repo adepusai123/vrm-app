@@ -6,6 +6,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CustomersModule } from '../../business/customers/customers.module';
+import { VehiclesModule } from 'src/app/business/vehicles/vehicles.module';
 
 @NgModule({
   declarations: [SidenavComponent, HeaderComponent, FooterComponent],
@@ -13,7 +14,8 @@ import { CustomersModule } from '../../business/customers/customers.module';
     CommonModule,
     RouterModule,
     MaterialModule,
-    CustomersModule
+    CustomersModule,
+    VehiclesModule
   ],
   exports: [SidenavComponent]
 })

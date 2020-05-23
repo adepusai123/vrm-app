@@ -18,6 +18,10 @@ export class SidenavComponent implements OnInit {
     {
       name: 'Customers',
       link: 'customers'
+    },
+    {
+      name: 'Vehicles',
+      link: 'vehicles'
     }
   ];
   constructor() { }
