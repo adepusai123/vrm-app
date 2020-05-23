@@ -4,9 +4,10 @@ import { SidenavComponent } from './sidenav.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [SidenavComponent, HeaderComponent],
+  declarations: [SidenavComponent, HeaderComponent, FooterComponent],
   imports: [
     CommonModule,
     RouterModule,

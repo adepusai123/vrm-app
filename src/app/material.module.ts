@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
 
 const modulesList = [
   CommonModule,
@@ -18,7 +19,8 @@ const modulesList = [
   MatInputModule,
   MatToolbarModule,
   MatCardModule,
-  MatButtonModule
+  MatButtonModule,
+  MatDividerModule
 ];
 @NgModule({
   declarations: [],
