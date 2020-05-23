@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -8,11 +9,13 @@ const routes: Routes = [
   },
   {
     path: 'customers',
-    loadChildren: './business/customers/customers.module#CustomersModule'
+    loadChildren: './business/customers/customers.module#CustomersModule',
+    canLoad: [AuthGuard]
   },
   {
     path: 'vehicles',
-    loadChildren: './business/vehicles/vehicles.module#VehiclesModule'
+    loadChildren: './business/vehicles/vehicles.module#VehiclesModule',
+    canLoad: [AuthGuard]
   }
 ];
 
