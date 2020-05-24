@@ -1,25 +1,26 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, UrlSegment, Route, CanLoad, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
-import { take, map } from 'rxjs/operators'
+import { UrlSegment, Route, CanLoad, Router } from '@angular/router';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { UtilsService } from './shared/services/utils.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanLoad {
+  public authStatus = new BehaviorSubject<any>('');
   constructor(
-    private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private utils: UtilsService
   ) { }
   canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authService.isLoggedIn.pipe(take(1), map((isLoggedIn: boolean) => {
-      if (!isLoggedIn) {
-        this.router.navigate(['/login']);
-        return false;
-      }
-      return true;
-    }));
+    const token = this.utils.getToken('authToken');
+    if (!token) {
+      this.router.navigate(['/login']);
+      return false;
+    } else {
+      this.authStatus.next(true);
+    }
+    return true;
   }
 
 }

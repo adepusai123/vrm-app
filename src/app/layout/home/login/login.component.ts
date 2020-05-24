@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
+import { UtilsService } from 'src/app/shared/services/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private utilsService: UtilsService
   ) { }
 
   ngOnInit() {
@@ -33,7 +35,8 @@ export class LoginComponent implements OnInit {
     if (valid) {
       this.authService.loginUser(value).subscribe((res) => {
         if (res) {
-          this.authService.updateUserLoginStatus(true);
+          const token = this.utilsService.getUUID();
+          this.utilsService.setToken('authToken', token);
           this.router.navigate(['/customers']);
         }
       }, (err) => console.log);

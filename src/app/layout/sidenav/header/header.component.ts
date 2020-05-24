@@ -6,13 +6,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  
-  @Input() sideMenuBar;
 
+  @Input() sideMenuBar;
+  @Input() homeLink;
+
+  homeUrl: string;
   title: string = 'VRM App';
   constructor() { }
 
   ngOnInit() {
+    this.homeUrl = this.homeLink || '.';
   }
 
   showSideNav() {
