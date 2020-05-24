@@ -13,7 +13,9 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <app-header [sideMenuBar]="snav" [homeLink]="homePageUrl"></app-header>
-        <router-outlet></router-outlet>
+        <div class="main_route_content">
+            <router-outlet></router-outlet>
+        </div>
         <app-footer></app-footer>
     </mat-sidenav-content>
 </mat-sidenav-container>

@@ -29,6 +29,10 @@ export class AuthService {
     this.authStatus$.next(true);
   }
 
+  signup(body) {
+    return this.http.post(`${this.baseUrl}user`, body);
+  }
+
   destroy() {
     this.utils.removeToken('authToken');
     this.authStatus$.unsubscribe();

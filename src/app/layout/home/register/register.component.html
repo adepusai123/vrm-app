@@ -1,3 +1,81 @@
-<p>
-  register works!
-</p>
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <!-- <mat-card-header>You can signup here.</mat-card-header> -->
+    <mat-card-title matLine align="center">Signup</mat-card-title>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-form-field appearance="fill">
+        <input matInput type="text" placeholder="First Name" formControlName="firstName">
+        <mat-error
+          *ngIf="signupForm.invalid && (signupForm.controls.firstName.touched || signupForm.controls.firstName.dirty)">
+          <span *ngIf="signupForm.hasError('required','firstName')">Please enter first name.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input matInput type="text" placeholder="Last Name" formControlName="lastName">
+        <!-- <mat-error
+          *ngIf="signupForm.invalid && (signupForm.controls.lastName.touched || signupForm.controls.lastName.dirty)">
+          <span *ngIf="signupForm.hasError('required','lastName')">Please enter last name.</span>
+        </mat-error> -->
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input matInput type="text" placeholder="Company" formControlName="company">
+        <mat-error
+          *ngIf="signupForm.invalid && (signupForm.controls.company.touched || signupForm.controls.company.dirty)">
+          <span *ngIf="signupForm.hasError('required','company')">Please enter company name.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <span matPrefix>+91 &nbsp;</span>
+        <input matInput type="tel" placeholder="Mobile Number" formControlName="mobile" maxlength="10">
+        <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
+        <mat-error
+          *ngIf="signupForm.invalid && (signupForm.controls.mobile.touched || signupForm.controls.mobile.dirty)">
+          <span *ngIf="signupForm.hasError('required','mobile')">Please enter mobile number.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input matInput type="email" placeholder="user@mail.com" formControlName="email">
+        <mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+        </mat-label>
+        <mat-error *ngIf="signupForm.invalid && (signupForm.controls.email.touched || signupForm.controls.email.dirty)">
+          <span *ngIf="signupForm.hasError('required','email')">Please enter email address.</span>
+          <span *ngIf="signupForm.hasError('email','email')">Please enter valid email address.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password">
+        <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+        <mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+        </mat-label>
+        <mat-error
+          *ngIf="signupForm.invalid && (signupForm.controls.password.touched || signupForm.controls.password.dirty)">
+          <span *ngIf="signupForm.hasError('required','password')">Please enter password.</span>
+          <!-- <span *ngIf="signupForm.hasError('minlength','password')">Password must be 6 characters length.</span> -->
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="cPassword">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+        </mat-label>
+        <mat-error
+          *ngIf="signupForm.invalid && (signupForm.controls.cPassword.touched || signupForm.controls.cPassword.dirty)">
+          <span *ngIf="signupForm.hasError('required','cPassword')">Please enter confirm password.</span>
+          <!-- <span *ngIf="signupForm.hasError('minlength', 'cPassword')">Password must be minimum 6 characters.</span> -->
+          <span *ngIf="signupForm.hasError('misMatch')">Confirm password mismatched</span>
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button type="reset" mat-raised-button aria-label="Cancel" color="warn">Cancel</button>
+      <button type="submit" mat-raised-button aria-label="Signup" [disabled]="!signupForm.valid" color="primary">Signup</button>
+    </mat-card-actions>
+    <mat-card-footer align="end">
+      <p matLine>Already have an account? <a routerLink="/login">Login</a></p>
+    </mat-card-footer>
+  </mat-card>
+</form>

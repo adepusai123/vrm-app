@@ -1,14 +1,36 @@
 mat-sidenav-container {
     height: 100%;
+
+    mat-sidenav-content {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+
+        app-header {
+            flex-shrink: 0;
+        }
+
+        .main_route_content {
+            flex-grow: 1;
+            overflow: auto;
+            // min-height: 2em;
+        }
+
+        app-footer {
+            flex-shrink: 0;
+            // position: fixed;
+            // left: 0;
+            // bottom: 0;
+            // width: 100%;
+            text-align: center;
+            height: 10%;
+            font-size: small;
+        }
+    }
 }
 
-app-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    height: 10%;
-  }
-
-  .active-link { color: blue; font-weight: bold !important; border: none; } 
+.active-link {
+    color: blue;
+    font-weight: bold !important;
+    border: none;
+}
