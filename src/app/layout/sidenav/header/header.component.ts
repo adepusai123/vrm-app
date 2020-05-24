@@ -15,7 +15,8 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.homeUrl = this.homeLink || '.';
+    console.log('-- ', this.homeLink);
+    this.homeUrl = this.homeLink;
   }
 
   showSideNav() {

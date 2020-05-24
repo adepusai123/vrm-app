@@ -16,6 +16,10 @@ export class UtilsService {
     return localStorage.getItem(key);
   }
 
+  removeToken(key) {
+    return localStorage.removeItem(key);
+  }
+
   getUUID() {
     return uuid.v4();
   }

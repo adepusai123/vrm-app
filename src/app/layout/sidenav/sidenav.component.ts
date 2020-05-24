@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilsService } from 'src/app/shared/services/utils.service';
-import { AuthGuard } from 'src/app/auth.guard';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,47 +9,49 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
-  isLoggedIn$: boolean;
+  isLoggedIn: boolean;
+  homePageUrl = '.';
   navRoutes = [];
   constructor(
-    private authGuard: AuthGuard,
     private utils: UtilsService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
-    this.authGuard.authStatus.subscribe((val) => {
-      this.isLoggedIn$ = val;
+    this.authService.authStatus$.subscribe(() => {
+      this.isLoggedIn = this.authService.isAuthencated();
       this.updateMenu();
-    })
+    });
   }
 
   ngOnInit() {
   }
 
   updateMenu() {
+    this.homePageUrl = this.isLoggedIn ? '/customers' : '.';
     this.navRoutes = [
       {
         name: 'Register',
         link: 'register',
-        showMenu: !this.isLoggedIn$,
+        showMenu: !this.isLoggedIn,
         index: 2
       },
       {
         name: 'Customers',
         link: 'customers',
-        showMenu: this.isLoggedIn$,
+        showMenu: this.isLoggedIn,
         index: 3
       },
       {
         name: 'Vehicles',
         link: 'vehicles',
-        showMenu: this.isLoggedIn$,
+        showMenu: this.isLoggedIn,
         index: 4
       }].sort((a, b) => a.index - b.index);
   }
 
   logout() {
-    this.utils.setToken('authToken', '');
-    this.isLoggedIn$ = false;
+    this.authService.destroy();
+    this.isLoggedIn = false;
     this.updateMenu();
     this.router.navigate(['/login']);
   }
