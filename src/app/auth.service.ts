@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   loginUser(body: any) {
-    return this.http.get(`${this.baseUrl}user`);
+    return this.http.post(`${this.baseUrl}student/login`, body);
   }
 
   loginSuccess() {

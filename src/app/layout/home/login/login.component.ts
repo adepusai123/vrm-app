@@ -33,9 +33,9 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const { value, valid } = this.loginForm;
     if (valid) {
-      this.authService.loginUser(value).subscribe((res) => {
+      this.authService.loginUser(value).subscribe((res: any) => {
         if (res) {
-          const token = this.utilsService.getUUID();
+          const token = res.token || this.utilsService.getUUID();
           this.utilsService.setToken('authToken', token);
           this.authService.loginSuccess();
           this.authService.isAuthencated();
