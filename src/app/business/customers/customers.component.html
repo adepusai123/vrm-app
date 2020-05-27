@@ -1,35 +1,167 @@
-<mat-horizontal-stepper linear #stepper>
-  <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
+<mat-horizontal-stepper linear labelPosition="bottom" #stepper>
+  <mat-step [stepControl]="basicFormGroup">
+    <form [formGroup]="basicFormGroup">
+      <ng-template matStepLabel>Fill out basic information</ng-template>
       <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        <mat-label>Full Name</mat-label>
+        <input matInput type="text" placeholder="Full name" formControlName="name" required>
       </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
+      <mat-form-field>
+        <mat-label>Date of Birth</mat-label>
+        <input matInput type="date" placeholder="Date of Birth" formControlName="dob" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Mobile</mat-label>
+        <input matInput type="text" placeholder="Mobile" formControlName="mobile" required>
+      </mat-form-field>
       <mat-form-field>
         <mat-label>Address</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+        <input matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY" required>
       </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+      <div class="actions">
+        <button mat-raised-button color="primary" matStepperNext (click)="next('basic')">Next</button>
       </div>
     </form>
   </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
+  <mat-step [stepControl]="identityFormGroup">
+    <form [formGroup]="identityFormGroup">
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <mat-form-field>
+        <mat-label>Aadhar No.</mat-label>
+        <input matInput type="text" placeholder="Addhar No." formControlName="aadar">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>PAN No.</mat-label>
+        <input matInput type="text" placeholder="PAN No." formControlName="pan">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Passport No.</mat-label>
+        <input matInput type="text" placeholder="Passport No." formControlName="passport">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>EPIC No.</mat-label>
+        <input matInput type="text" placeholder="EPIC No." formControlName="election">
+      </mat-form-field>
+      <div class="actions">
+        <!-- <button mat-button matStepperPrevious>Back</button> -->
+        <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" (click)="next('identity')">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="residencyFormGroup" optional>
+    <form [formGroup]="residencyFormGroup">
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <mat-form-field>
+        <mat-label>Electricity</mat-label>
+        <input matInput type="text" placeholder="Electricity No." formControlName="electricity">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Food Security Card No.</mat-label>
+        <input matInput type="text" placeholder="Food Security Card No." formControlName="ration">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Other Certificates</mat-label>
+        <input matInput type="text" placeholder="Other ceritificates" formControlName="other">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Leaving Cert No.</mat-label>
+        <input matInput type="text" placeholder="Leaving Cert No." formControlName="leave">
+      </mat-form-field>
+      <div class="actions">
+        <!-- <button mat-button matStepperPrevious>Back</button> -->
+        <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" matStepperNext (click)="next('residency')">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="drivingFormGroup">
+    <form [formGroup]="drivingFormGroup">
+      <ng-template matStepLabel>Fill out your driving licence information</ng-template>
+      <mat-form-field>
+        <mat-label>Driving Licence No.</mat-label>
+        <input matInput type="text" placeholder="Driving Licence" formControlName="driving" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Driving Licence Type</mat-label>
+        <input matInput type="text" placeholder="Licence Type" formControlName="drivingType" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Non Transport upto</mat-label>
+        <input matInput type="date" placeholder="Non Transport upto" formControlName="nonTransportLicenceUpto" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Transport Licence Upto</mat-label>
+        <input matInput type="date" placeholder="Transport Licence upto" formControlName="transportLicenceUpto"
+          required>
+      </mat-form-field>
+      <div class="actions">
+        <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" matStepperNext (click)="next('driving')">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="uploadFormGroup">
+    <form [formGroup]="uploadFormGroup">
+      <ng-template matStepLabel>Upload Files</ng-template>
+      <p>upload files here.</p>
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+          <mat-card>
+            <mat-card-content>
+              <mat-form-field appearance="outline">
+                <mat-label>PAN Card</mat-label>
+                <ngx-mat-file-input formControlName="panFile" placeholder="PAN Card"></ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Addhar card</mat-label>
+                <ngx-mat-file-input type="file" placeholder="Addhar card" formControlName="aadarFile" required>
+                </ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Food Security Card</mat-label>
+                <ngx-mat-file-input type="file" placeholder="Food Security Card" formControlName="rationFile" required>
+                </ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card>
+            <mat-card-content>
+              <mat-form-field appearance="outline">
+                <mat-label>Passport</mat-label>
+                <ngx-mat-file-input type="file" placeholder="Passport" formControlName="passportFile" required>
+                </ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Passport</mat-label>
+                <ngx-mat-file-input type="file" placeholder="EPIC Card" formControlName="electionFile" required>
+                </ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Driving Licence</mat-label>
+                <ngx-mat-file-input type="file" placeholder="Addhar card" formControlName="drivingFile" required>
+                </ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <!-- rationFile -->
+      <!-- drivingFile -->
+      <mat-divider></mat-divider>
+      <div class="actions">
+        <button mat-raised-button color="warn" (click)="stepper.reset()">Reset</button>
+        <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" (click)="complete()">Submit</button>
+      </div>
+    </form>
   </mat-step>
 </mat-horizontal-stepper>

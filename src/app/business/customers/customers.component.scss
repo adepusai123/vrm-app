@@ -1,9 +1,27 @@
 .mat-stepper-horizontal {
-    margin-top: 5%;
-    width: 80%;
-    align-items: center;
+  // margin-top: 5%;
+  // width: 80%;
+  align-items: center;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.actions {
+  padding: 3% 0%;
+  display: flex;
+  justify-content: flex-end;
+  button {
+    margin-right: 10px;
   }
-  
-  .mat-form-field {
-    margin-top: 16px;
-  }
+}
+
+mat-card {
+  height: 100%;
+}
+
+mat-grid-tile {
+  padding-bottom: 2%;
+}

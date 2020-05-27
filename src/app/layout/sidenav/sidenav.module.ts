@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CustomersModule } from '../../business/customers/customers.module';
 import { VehiclesModule } from 'src/app/business/vehicles/vehicles.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [SidenavComponent, HeaderComponent, FooterComponent],
@@ -15,7 +16,8 @@ import { VehiclesModule } from 'src/app/business/vehicles/vehicles.module';
     RouterModule,
     MaterialModule,
     CustomersModule,
-    VehiclesModule
+    VehiclesModule,
+    ReactiveFormsModule
   ],
   exports: [SidenavComponent]
 })

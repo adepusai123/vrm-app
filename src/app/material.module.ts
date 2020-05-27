@@ -10,6 +10,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 const modulesList = [
   CommonModule,
@@ -22,7 +24,9 @@ const modulesList = [
   MatCardModule,
   MatButtonModule,
   MatDividerModule,
-  MatStepperModule
+  MatStepperModule,
+  MatGridListModule,
+  MaterialFileInputModule
 ];
 @NgModule({
   declarations: [],
