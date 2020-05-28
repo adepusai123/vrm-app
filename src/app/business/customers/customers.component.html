@@ -45,7 +45,7 @@
       <div class="actions">
         <!-- <button mat-button matStepperPrevious>Back</button> -->
         <button mat-raised-button color="accent" matStepperPrevious>Back</button>
-        <button mat-raised-button color="primary" (click)="next('identity')">Next</button>
+        <button mat-raised-button color="primary" matStepperNext (click)="next('identity')">Next</button>
       </div>
     </form>
   </mat-step>
@@ -101,11 +101,20 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="uploadFormGroup">
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div class="actions">
+      <button mat-raised-button color="warn" (click)="stepper.reset()">Reset</button>
+      <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+      <button mat-raised-button color="primary" (click)="complete()">Submit</button>
+    </div>
+  </mat-step>
+  <!-- <mat-step [stepControl]="uploadFormGroup">
     <form [formGroup]="uploadFormGroup">
       <ng-template matStepLabel>Upload Files</ng-template>
       <p>upload files here.</p>
-      <!-- <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-list cols="2" rowHeight="2:1">
         <mat-grid-tile>
           <mat-card>
             <mat-card-content>
@@ -153,9 +162,7 @@
             </mat-card-content>
           </mat-card>
         </mat-grid-tile>
-      </mat-grid-list> -->
-      <!-- rationFile -->
-      <!-- drivingFile -->
+      </mat-grid-list>
       <mat-divider></mat-divider>
       <div class="actions">
         <button mat-raised-button color="warn" (click)="stepper.reset()">Reset</button>
@@ -163,5 +170,5 @@
         <button mat-raised-button color="primary" (click)="complete()">Submit</button>
       </div>
     </form>
-  </mat-step>
+  </mat-step> -->
 </mat-horizontal-stepper>
