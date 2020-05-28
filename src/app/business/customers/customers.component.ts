@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FileValidator } from 'ngx-material-file-input';
+// import { FileValidator } from 'ngx-material-file-input';
 
 @Component({
   selector: 'app-customers',
@@ -53,12 +53,12 @@ export class CustomersComponent implements OnInit {
     });
 
     this.uploadFormGroup = this.fb.group({
-      aadarFile: ['', [Validators.required, FileValidator.maxContentSize(this.maxSize)]],
-      panFile: ['', [Validators.required, FileValidator.maxContentSize(this.maxSize)]],
+      aadarFile: ['', [Validators.required]],
+      panFile: ['', [Validators.required]],
       passportFile: [''],
       electionFile: [''],
       rationFile: [''],
-      drivingFile: ['', [Validators.required, FileValidator.maxContentSize(this.maxSize)]]
+      drivingFile: ['', [Validators.required]]
     });
   }
 
