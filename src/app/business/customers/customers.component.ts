@@ -13,17 +13,28 @@ export class CustomersComponent implements OnInit {
   residencyFormGroup: FormGroup;
   drivingFormGroup: FormGroup;
   uploadFormGroup: FormGroup;
+  minDate: Date;
+  maxDate: Date;
   private basicFormData: any;
   private residencyFormData: any;
   private identifyFormData: any;
   private drivingFormData: any;
   private uploadFormData: any;
   isEditable = false;
-  /**
-   * In this example, it's 100 MB (=100 * 2 ** 20).
-   */
-  readonly maxSize = 104857600;
-  constructor(private fb: FormBuilder) { }
+
+  constructor(private fb: FormBuilder) {
+    const { date, month, year } = this.dates();
+    this.maxDate = new Date(year, month, date);
+  }
+
+  dates() {
+    const today = new Date();
+    return {
+      date: today.getDate(),
+      month: today.getMonth(),
+      year: today.getFullYear()
+    }
+  }
 
   ngOnInit() {
     this.basicFormGroup = this.fb.group({

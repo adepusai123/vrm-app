@@ -6,9 +6,11 @@
         <mat-label>Full Name</mat-label>
         <input matInput type="text" placeholder="Full name" formControlName="name" required>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field color="accent">
         <mat-label>Date of Birth</mat-label>
-        <input matInput type="date" placeholder="Date of Birth" formControlName="dob" required>
+        <input matInput [matDatepicker]="dob" [max]="maxDate" formControlName="dob">
+        <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+        <mat-datepicker #dob color="primary"></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Mobile</mat-label>
@@ -86,14 +88,26 @@
         <mat-label>Driving Licence Type</mat-label>
         <input matInput type="text" placeholder="Licence Type" formControlName="drivingType" required>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field color="accent">
+        <mat-label>Non Transport upto</mat-label>
+        <input matInput [matDatepicker]="ntlUpto" formControlName="nonTransportLicenceUpto" placeholder="Non Transport upto">
+        <mat-datepicker-toggle matSuffix [for]="ntlUpto"></mat-datepicker-toggle>
+        <mat-datepicker #ntlUpto color="primary"></mat-datepicker>
+      </mat-form-field>
+      <!-- <mat-form-field>
         <mat-label>Non Transport upto</mat-label>
         <input matInput type="date" placeholder="Non Transport upto" formControlName="nonTransportLicenceUpto" required>
-      </mat-form-field>
-      <mat-form-field>
+      </mat-form-field> -->
+      <!-- <mat-form-field>
         <mat-label>Transport Licence Upto</mat-label>
         <input matInput type="date" placeholder="Transport Licence upto" formControlName="transportLicenceUpto"
           required>
+      </mat-form-field> -->
+      <mat-form-field color="accent">
+        <mat-label>Transport Licence Upto</mat-label>
+        <input matInput [matDatepicker]="tlUpto" formControlName="transportLicenceUpto" placeholder="Transport Licence Upto">
+        <mat-datepicker-toggle matSuffix [for]="tlUpto"></mat-datepicker-toggle>
+        <mat-datepicker #tlUpto color="primary"></mat-datepicker>
       </mat-form-field>
       <div class="actions">
         <button mat-raised-button color="accent" matStepperPrevious>Back</button>
