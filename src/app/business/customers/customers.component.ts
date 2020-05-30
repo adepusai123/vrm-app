@@ -20,8 +20,12 @@ export class CustomersComponent implements OnInit {
   private identifyFormData: any;
   private drivingFormData: any;
   private uploadFormData: any;
-  isEditable = false;
-
+  private licenceTypes = [
+    { name: 'Non Transport', code: 'NT' },
+    { name: 'Transport', code: 'T' },
+    { name: 'Both', code: 'NT&T' }
+  ];
+  private selectedLicenceType: String = 'NT';
   constructor(private fb: FormBuilder) {
     const { date, month, year } = this.dates();
     this.maxDate = new Date(year, month, date);
@@ -41,7 +45,7 @@ export class CustomersComponent implements OnInit {
       name: ['', Validators.required],
       dob: ['', Validators.required],
       address: ['', Validators.required],
-      mobile: ['', Validators.required]
+      mobile: ['', [Validators.required, Validators.minLength(10), Validators.pattern(new RegExp("[0-9 ]{10}"))]]
     });
     this.identityFormGroup = this.fb.group({
       aadar: ['', Validators.required],
@@ -58,14 +62,14 @@ export class CustomersComponent implements OnInit {
 
     this.drivingFormGroup = this.fb.group({
       driving: [''],
-      drivingType: [''],
+      drivingType: [this.selectedLicenceType],
       nonTransportLicenceUpto: [''],
       transportLicenceUpto: [''],
     });
 
     this.uploadFormGroup = this.fb.group({
-      aadarFile: ['', [Validators.required]],
-      panFile: ['', [Validators.required]],
+      aadarFile: ['', Validators.required],
+      panFile: ['', Validators.required],
       passportFile: [''],
       electionFile: [''],
       rationFile: [''],

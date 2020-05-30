@@ -5,20 +5,38 @@
       <mat-form-field>
         <mat-label>Full Name</mat-label>
         <input matInput type="text" placeholder="Full name" formControlName="name" required>
+        <mat-error
+          *ngIf="basicFormGroup.invalid && (basicFormGroup.controls.name.dirty || basicFormGroup.controls.name.touched)">
+          <span *ngIf="basicFormGroup.hasError('required','name')">Full name is required.</span>
+        </mat-error>
       </mat-form-field>
       <mat-form-field color="accent">
         <mat-label>Date of Birth</mat-label>
         <input matInput [matDatepicker]="dob" [max]="maxDate" formControlName="dob">
         <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
         <mat-datepicker #dob color="primary"></mat-datepicker>
+        <mat-error
+          *ngIf="basicFormGroup.invalid && (basicFormGroup.controls.dob.dirty || basicFormGroup.controls.dob.touched)">
+          <span *ngIf="basicFormGroup.hasError('required','dob')">Date of Birth is required.</span>
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Mobile</mat-label>
-        <input matInput type="text" placeholder="Mobile" formControlName="mobile" required>
+        <input matInput type="tel" placeholder="Mobile" formControlName="mobile" maxlength="10" required>
+        <mat-error
+          *ngIf="basicFormGroup.invalid && (basicFormGroup.controls.mobile.dirty || basicFormGroup.controls.mobile.touched)">
+          <span *ngIf="basicFormGroup.hasError('required','mobile')">Mobile is required.</span>
+          <span *ngIf="basicFormGroup.hasError('minlength','mobile')">It must be 10 characters length.</span>
+          <span *ngIf="basicFormGroup.hasError('pattern','mobile')">accepts only numbers.</span>
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Address</mat-label>
         <input matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY" required>
+        <mat-error
+          *ngIf="basicFormGroup.invalid && (basicFormGroup.controls.address.dirty || basicFormGroup.controls.address.touched)">
+          <span *ngIf="basicFormGroup.hasError('required','address')">Address is required.</span>
+        </mat-error>
       </mat-form-field>
       <div class="actions">
         <button mat-raised-button color="primary" matStepperNext (click)="next('basic')">Next</button>
@@ -86,26 +104,23 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Driving Licence Type</mat-label>
-        <input matInput type="text" placeholder="Licence Type" formControlName="drivingType" required>
+        <mat-select [(value)]="selectedLicenceType" formControlName="drivingType" required>
+          <mat-option *ngFor="let type of licenceTypes" [value]="type.code">
+            {{type.name}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
-      <mat-form-field color="accent">
+      <mat-form-field color="accent" *ngIf="['NT&T','NT'].indexOf(selectedLicenceType) > -1">
         <mat-label>Non Transport upto</mat-label>
-        <input matInput [matDatepicker]="ntlUpto" formControlName="nonTransportLicenceUpto" placeholder="Non Transport upto">
+        <input matInput [matDatepicker]="ntlUpto" formControlName="nonTransportLicenceUpto"
+          placeholder="Non Transport upto">
         <mat-datepicker-toggle matSuffix [for]="ntlUpto"></mat-datepicker-toggle>
         <mat-datepicker #ntlUpto color="primary"></mat-datepicker>
       </mat-form-field>
-      <!-- <mat-form-field>
-        <mat-label>Non Transport upto</mat-label>
-        <input matInput type="date" placeholder="Non Transport upto" formControlName="nonTransportLicenceUpto" required>
-      </mat-form-field> -->
-      <!-- <mat-form-field>
+      <mat-form-field color="accent" *ngIf="['NT&T','T'].indexOf(selectedLicenceType) > -1">
         <mat-label>Transport Licence Upto</mat-label>
-        <input matInput type="date" placeholder="Transport Licence upto" formControlName="transportLicenceUpto"
-          required>
-      </mat-form-field> -->
-      <mat-form-field color="accent">
-        <mat-label>Transport Licence Upto</mat-label>
-        <input matInput [matDatepicker]="tlUpto" formControlName="transportLicenceUpto" placeholder="Transport Licence Upto">
+        <input matInput [matDatepicker]="tlUpto" formControlName="transportLicenceUpto"
+          placeholder="Transport Licence Upto">
         <mat-datepicker-toggle matSuffix [for]="tlUpto"></mat-datepicker-toggle>
         <mat-datepicker #tlUpto color="primary"></mat-datepicker>
       </mat-form-field>

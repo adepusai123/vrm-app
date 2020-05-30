@@ -15,6 +15,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_FORMATS, DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 // import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { MatSelectModule } from '@angular/material/select';
 
 export const MY_FORMATS = {
   parse: {
@@ -41,7 +42,8 @@ const modulesList = [
   MatStepperModule,
   MatGridListModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatSelectModule
   // MaterialFileInputModule
 ];
 @NgModule({
