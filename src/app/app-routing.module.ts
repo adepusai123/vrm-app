@@ -12,12 +12,14 @@ const routes: Routes = [
   {
     path: 'customers',
     loadChildren: './business/customers/customers.module#CustomersModule',
-    canLoad: [AuthGuard]
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: 'vehicles',
     loadChildren: './business/vehicles/vehicles.module#VehiclesModule',
-    canLoad: [AuthGuard]
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard]
   }
 ];
 

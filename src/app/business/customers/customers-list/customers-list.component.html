@@ -1,0 +1,35 @@
+<!-- <div> -->
+<table mat-table [dataSource]="customers">
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+  <!-- Age Column -->
+  <ng-container matColumnDef="age">
+    <th mat-header-cell *matHeaderCellDef> Age </th>
+    <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+  </ng-container>
+
+  <!-- Mobile Column -->
+  <ng-container matColumnDef="mobile">
+    <th mat-header-cell *matHeaderCellDef> Mobile </th>
+    <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+  </ng-container>
+
+  <!-- driving Column -->
+  <ng-container matColumnDef="driving">
+    <th mat-header-cell *matHeaderCellDef> Driving Licence </th>
+    <td mat-cell *matCellDef="let element"> {{element.driving}} </td>
+  </ng-container>
+  <!-- Aadhar Column -->
+
+  <ng-container matColumnDef="aadhar">
+    <th mat-header-cell *matHeaderCellDef> Aadhar </th>
+    <td mat-cell *matCellDef="let element"> {{element.aadhar}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<!-- </div> -->

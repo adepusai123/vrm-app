@@ -37,11 +37,14 @@ export class LoginComponent implements OnInit {
         if (res) {
           const token = this.utilsService.getUUID();
           this.utilsService.setToken('authToken', token);
+          this.utilsService.openSnackBar('Login success', '');
           this.authService.loginSuccess();
           this.authService.isAuthencated();
           this.router.navigate(['/customers']);
         }
-      }, (err) => console.log);
+      }, (err) => {
+        this.utilsService.openSnackBar('Login Failed', '');
+      });
     }
   }
 

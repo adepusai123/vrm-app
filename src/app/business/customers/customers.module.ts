@@ -5,9 +5,10 @@ import { CustomersRoutingModule } from './customers-routing.module';
 import { CustomersComponent } from './customers.component';
 import { MaterialModule } from 'src/app/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CustomersListComponent } from './customers-list/customers-list.component';
 
 @NgModule({
-  declarations: [CustomersComponent],
+  declarations: [CustomersComponent, CustomersListComponent],
   imports: [
     CommonModule,
     CustomersRoutingModule,

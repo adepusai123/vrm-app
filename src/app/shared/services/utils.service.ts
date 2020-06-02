@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as uuid from 'uuid';
 
 @Injectable({
@@ -6,7 +7,9 @@ import * as uuid from 'uuid';
 })
 export class UtilsService {
 
-  constructor() { }
+  constructor(
+    private _snackBar: MatSnackBar
+  ) { }
 
   setToken(key, value) {
     localStorage.setItem(key, value);
@@ -22,5 +25,15 @@ export class UtilsService {
 
   getUUID() {
     return uuid.v4();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+  closeSnackBar(snacBarRef: any) {
+    snacBarRef.dismiss();
   }
 }
